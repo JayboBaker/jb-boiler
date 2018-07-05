@@ -1,0 +1,5 @@
+--compilers js:babel-register
+-r jsdom-global/register
+-r babel-polyfill
+test/setup.js
+src/**/*.spec.js

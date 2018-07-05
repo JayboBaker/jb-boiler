@@ -1,0 +1,85 @@
+{
+  "name": "jb-boiler",
+  "version": "1.0.0",
+  "description": "A movie search facility",
+  "main": "index.js",
+  "author": "James Baker",
+  "license": "ISC",
+  "standard": {
+    "globals": [
+      "describe",
+      "beforeEach",
+      "it",
+      "expect"
+    ],
+    "ignore": [
+      "/dist/"
+    ]
+  },
+  "browserslist": [
+    "> 1%",
+    "last 4 versions",
+    "not ie < 9"
+  ],
+  "pre-commit": {
+    "run": [
+      "precommit-msg",
+      "test"
+    ]
+  },
+  "scripts": {
+    "build": "npm run build:all",
+    "build:all": "npm run build:clean && npm run build:app",
+    "build:clean": "rm -rf dist && mkdir dist",
+    "build:app": "cross-env NODE_ENV=production webpack --display-error-details",
+    "start": "cross-env NODE_ENV=development webpack-dev-server --progress",
+    "lint": "standard",
+    "lint:watch": "nodemon --watch ./src/ --exec npm run lint",
+    "lint:fix": "standard --fix",
+    "precommit-msg": "echo 'Running pre-commit checks...' && exit 0",
+    "test": "concurrently 'npm run lint' 'npm run spec'",
+    "test:watch": "concurrently 'npm run lint:watch' 'npm run spec:watch'",
+    "spec": "mocha",
+    "spec:watch": "mocha -w"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.6.4",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-preset-react": "^6.24.1",
+    "chai": "^4.0.1",
+    "concurrently": "^3.4.0",
+    "cross-env": "^5.0.0",
+    "css-loader": "^0.28.4",
+    "cssnano": "^4.0.0-rc.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "extract-css-chunks-webpack-plugin": "^3.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "jsdom": "^11.0.0",
+    "jsdom-global": "^3.0.2",
+    "mocha": "^5.2.0",
+    "node-sass": "^4.5.3",
+    "nodemon": "^1.11.0",
+    "postcss-cli": "^5.0.1",
+    "postcss-loader": "^2.0.5",
+    "pre-commit": "^1.2.2",
+    "prop-types": "^15.5.10",
+    "react-a11y": "^1.0.0",
+    "react-addons-test-utils": "^15.5.1",
+    "sass-loader": "^7.0.3",
+    "standard": "^11.0.1",
+    "sw-precache": "^5.1.1",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "debug": "^3.1.0",
+    "normalize.css": "^8.0.0",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  }
+}
